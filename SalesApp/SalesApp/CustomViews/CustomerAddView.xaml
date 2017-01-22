@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Editor xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             x:Class="SalesApp.CustomViews.CustomerAddView">
+  <!--<ContentView.BindingContext>
+    <viewModels:CustomerAddModel></viewModels:CustomerAddModel>
+  </ContentView.BindingContext>-->
+  <Editor.Resources>
+    <ResourceDictionary>
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </Editor.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!--Linkerkant images-->
+    <!--<custom:ImageGridView BindingContext="{Binding Customer.ImageUrls}"></custom:ImageGridView>-->
+    <!--Rechterkant tekst-->
+    <StackLayout Grid.Row="0" Grid.Column="0">
+      <Label HorizontalOptions="Center" Text="First Name : " Style="{ Binding Source={StaticResource LblHeaderStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Customer ID : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Last Name : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Address : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Contact : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    </StackLayout>
+    <StackLayout Grid.Row="0" Grid.Column="1">
+      <Editor>
+        <Label HorizontalOptions="Center" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Customer.LastName}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Customer.Address}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Customer.Contact}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      </Editor>
+      <!--noob fix-->
+      <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
+    </StackLayout>
+    <Button Grid.Row="1" Grid.Column="1" Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
+
+  </Grid>
+</Editor>

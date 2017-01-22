@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SalesApp/SalesApp/bin
+/SalesApp/SalesApp/obj
+/SalesApp/SalesApp.Droid/bin
+/SalesApp/SalesApp.Droid/obj
+/SalesApp/SalesApp.iOS/bin/iPhone/Debug
+/SalesApp/SalesApp.iOS/obj/iPhone/Debug
+/SalesApp/SalesApp.Windows/bin/Debug
+/SalesApp/SalesApp.Windows/obj/Debug
+/SalesApp/SalesApp.WinPhone/bin/Debug
+/SalesApp/SalesApp.WinPhone/obj/Debug
+/SalesApp.Model/bin
+/SalesApp.Model/obj
+/SalesApp.Repo/bin
+/SalesApp.Repo/obj
+/SalesApp.Service/bin
+/SalesApp.Service/obj
+/packages

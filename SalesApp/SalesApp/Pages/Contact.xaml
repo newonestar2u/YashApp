@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesApp.Pages.Contact"
+             xmlns:vm="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             xmlns:conv="clr-namespace:SalesApp.Converter;assembly=SalesApp">
+  <ContentPage.BindingContext>
+    <vm:ContactViewModel></vm:ContactViewModel>
+  </ContentPage.BindingContext>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:DownloadImageConverter x:Key="DownloadImageConverter"></conv:DownloadImageConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout>
+    <StackLayout Orientation="Horizontal">
+      <Label FontAttributes="Bold">Address</Label>
+      <Label Text="{Binding Address}"></Label>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal">
+      <Label FontAttributes="Bold">Phonenumber</Label>
+      <Label Text="{Binding PhoneNumber}"></Label>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal">
+      <Label FontAttributes="Bold">Email</Label>
+      <Label Text="{Binding Email}"></Label>
+    </StackLayout>
+    <Grid>
+    <Image Source="{Binding GoogleMapsUri, Converter={StaticResource DownloadImageConverter}}"></Image>
+    </Grid>
+  </StackLayout>
+</ContentPage>

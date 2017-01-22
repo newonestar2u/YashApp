@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             x:Class="SalesApp.Pages.CustomerDetail"
+             xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp">
+  <ContentPage.BindingContext>
+    <viewmodel:CustomerDetailViewModel></viewmodel:CustomerDetailViewModel>
+  </ContentPage.BindingContext>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ScrollView Orientation="Vertical">
+    <StackLayout>
+      <Label Text="{Binding Customer.FirstName}" Style="{StaticResource LblHeaderStyle}" HorizontalOptions="Center"></Label>
+      <custom:ImageGridView BindingContext="{Binding Customer.ImageUrls}"></custom:ImageGridView>
+      <Label Text="{Binding Customer.LastName}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <custom:ListDivider></custom:ListDivider>
+      <Label Text="{Binding Customer.Address}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <Label Text="{Binding Customer.Contact}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <Label Text="{Binding Customer.CustomerId}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <Label Text="{Binding Customer.LastName}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <Label Text="{Binding Customer.Balance}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <Label Text="{Binding Customer.Mobile}" Style="{StaticResource LblDescriptionStyle}"></Label>
+    </StackLayout>
+
+  </ScrollView>
+</ContentPage>

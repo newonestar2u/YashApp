@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesApp.CustomViews.OrderView"
+              xmlns:viewmodel="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp">
+  <ContentView.BindingContext>
+    <viewmodel:OrderViewModel></viewmodel:OrderViewModel>
+  </ContentView.BindingContext>
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <!--<Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>-->
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!--Linkerkant images-->
+    <!--<custom:ImageGridView BindingContext="{Binding Product.ImageUrls}"></custom:ImageGridView>-->
+    <!--Rechterkant tekst-->
+    <Label Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" Text="Customer Id" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="Ordered By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="Ordered  Date" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Text="Approved" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" Text="Balance" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Text="Discount" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Text="Discount Reason" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="7" Grid.Column="0" HorizontalOptions="Center" Text="Payment" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="8" Grid.Column="0" HorizontalOptions="Center" Text="Sales By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="9" Grid.Column="0" HorizontalOptions="Center" Text="Payment Type" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+
+    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.CustomerId}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.OrderBy}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.OrderDate}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.Approved}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.Balance}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.Discount}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.DiscountReason}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="7" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.Payment}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="8" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.SalesBy}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="9" Grid.Column="1" HorizontalOptions="Center" Text="{Binding Order.PaymentType}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Button Grid.Row="10" Grid.Column="1" Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
+    <!--<StackLayout Grid.Row="0" Grid.Column="0">
+      <Label HorizontalOptions="Center" Text="Customer Id" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Ordered By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Ordered  Date" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Approved" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Balance" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Discount" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Discount Reason" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Payment" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Sales By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="Payment Type" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    </StackLayout>
+    <StackLayout Grid.Row="0" Grid.Column="1">
+      <StackLayout>
+        <Label HorizontalOptions="Center" Text="{Binding Order.CustomerId}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.OrderBy}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.OrderDate}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.Approved}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.Balance}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.Discount}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.DiscountReason}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.Payment}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.SalesBy}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Label HorizontalOptions="Center" Text="{Binding Order.PaymentType}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+        <Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
+      </StackLayout>-->
+    <!--noob fix-->
+    <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
+    <!--</StackLayout>-->
+
+  </Grid>
+</ContentView>

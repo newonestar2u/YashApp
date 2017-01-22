@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp"
+     x:Class="SalesApp.Pages.OrderPage">
+  <ContentPage.BindingContext >
+    <vm:OrdersViewModel></vm:OrdersViewModel>
+  </ContentPage.BindingContext>
+  <StackLayout>
+    <custom:OrderList ClassId="OrdersPage" BindingContext="{Binding Orders}"></custom:OrderList>
+  </StackLayout>
+</ContentPage>

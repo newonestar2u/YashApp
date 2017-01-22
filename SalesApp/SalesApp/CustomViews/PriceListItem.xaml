@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SalesApp.Model.Model;assembly=SalesApp.Model"
+             x:Class="SalesApp.CustomViews.PriceListItem">
+  <ContentView.BindingContext>
+    <model:Price></model:Price>
+  </ContentView.BindingContext>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition></ColumnDefinition>
+      <ColumnDefinition></ColumnDefinition>
+      <ColumnDefinition></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Label Text="{Binding Description}"></Label>
+    <Label Grid.Column="1" Text="{Binding Value}"></Label>
+    <Switch Grid.Column="2" x:Name="Switch" IsToggled="{Binding Bought, Mode=TwoWay}"></Switch>
+  </Grid>
+</ContentView>

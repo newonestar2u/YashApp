@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesApp.Pages.Detail"
+             xmlns:viewmodel="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp">
+  <ContentPage.BindingContext>
+    <viewmodel:ProductDetailViewModel></viewmodel:ProductDetailViewModel>
+  </ContentPage.BindingContext>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ScrollView Orientation="Vertical">
+    <StackLayout>
+      <Label Text="{Binding Product.Name}" Style="{StaticResource LblHeaderStyle}" HorizontalOptions="Center"></Label>
+      <custom:ImageGridView BindingContext="{Binding Product.ImageUrls}"></custom:ImageGridView>
+      <Label Text="{Binding Product.Information}" Style="{StaticResource LblDescriptionStyle}"></Label>
+      <custom:ListDivider></custom:ListDivider>
+      <Label Text="Buy" Style="{StaticResource LblHeaderStyle}" HorizontalOptions="Center"></Label>
+      <custom:PriceList BindingContext="{Binding Product.Prices}"></custom:PriceList>
+      <Label Text="Extra's" FontAttributes="Bold" FontSize="20"></Label>
+      <custom:PriceList BindingContext="{Binding Product.Additions}"></custom:PriceList>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Text="Calculate" Command="{Binding UpdateTotalCommand}"></Button>
+        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+          <Label Text="Totaalprijs" FontAttributes="Bold" FontSize="20"></Label>
+          <Label Text="{Binding Total}" x:Name="LblTotal" FontAttributes="Bold" FontSize="20"></Label>
+        </StackLayout>
+      </Grid>
+      
+      
+    </StackLayout>
+
+    </ScrollView>
+</ContentPage>
