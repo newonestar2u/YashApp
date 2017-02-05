@@ -1,7 +1,7 @@
-﻿namespace SalesApp.Model.Model
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace SalesApp.Model.Model
+{
     public class Product : BaseModel
     {
         public string Name { get; set; }

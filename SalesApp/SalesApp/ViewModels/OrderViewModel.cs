@@ -27,9 +27,27 @@ namespace SalesApp.ViewModels
             }
         }
 
+        private List<OrderLineViewModel> orderLinesViewModel;
+        public List<OrderLineViewModel> OrderLinesViewModel
+        {
+            get { return this.orderLinesViewModel; }
+            set
+            {
+                this.orderLinesViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public OrderViewModel(Order order) : this()
         {
             this.Order = order;
+            OrderLinesViewModel= new List<OrderLineViewModel>();
+            foreach (OrderLine ol in order.OrderLines)
+            {
+                var newItem = new OrderLineViewModel(ol);
+                OrderLinesViewModel.Add(newItem);
+            }
         }
 
         public OrderViewModel()

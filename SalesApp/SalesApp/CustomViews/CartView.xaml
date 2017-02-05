@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             x:Class="SalesApp.CustomViews.CartView">
+  <ContentView.BindingContext>
+    <viewModels:OrderViewModel></viewModels:OrderViewModel>
+  </ContentView.BindingContext>
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="7*"></ColumnDefinition>
+      <ColumnDefinition Width="3*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <StackLayout  Grid.Column="0">
+      <Label HorizontalOptions="Center" Text="{Binding Order.CustomerId}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+      <!--<StackLayout BindingContext=""></StackLayout>-->
+      <!--noob fix-->
+      <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
+    </StackLayout>
+
+    <StackLayout Grid.Column="1">
+      <Button Text="" Image="water" x:Name="ButtonWater" Clicked="ButtonWater_OnClicked"></Button>
+      <Button Text="" Image="news"  x:Name="ButtonNews" Clicked="ButtonNews_OnClicked"></Button>
+      <!--<BoxView HorizontalOptions="Fill"></BoxView>-->
+    </StackLayout>
+  </Grid>
+</ContentView>

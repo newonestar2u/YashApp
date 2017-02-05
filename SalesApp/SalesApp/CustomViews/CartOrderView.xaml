@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             xmlns:customViews="clr-namespace:SalesApp.CustomViews;assembly=SalesApp"
+             x:Class="SalesApp.CustomViews.CartOrderView">
+  <ContentView.BindingContext>
+    <viewModels:OrderViewModel></viewModels:OrderViewModel>
+  </ContentView.BindingContext>
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="3*"></ColumnDefinition>
+      <ColumnDefinition Width="7*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="End" Text="Customer ID" Style="{Binding Source={StaticResource LblHeaderStyle }}"></Label>
+    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Text="{Binding Order.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="End" Text="Total Orders" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" Text="{Binding Order.OrderLines.Count}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <customViews:OrderLineListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  ClassId="OrderLines" BindingContext="{Binding OrderLinesViewModel}"></customViews:OrderLineListView>
+    <!--noob fix-->
+    <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
+  </Grid>
+</ContentView>
+

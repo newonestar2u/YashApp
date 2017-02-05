@@ -39,12 +39,14 @@ namespace SalesApp.Model.Model
             }
         }
 
-        public bool Bought {
+        public bool Bought
+        {
             get { return bought; }
             set
             {
                 bought = value;
                 NotifyPropertyChanged();
-            } }
+            }
+        }
     }
 }

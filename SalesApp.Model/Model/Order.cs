@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SalesApp.Model.Model
 {
@@ -18,5 +15,12 @@ namespace SalesApp.Model.Model
         public decimal Balance { get; set; }
         public decimal Payment { get; set; }
         public string PaymentType { get; set; }
+
+        public List<OrderLine> OrderLines { get; set; }
+
+        public Order()
+        {
+            OrderLines = new List<OrderLine>();
+        }
     }
 }

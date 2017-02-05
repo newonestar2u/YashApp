@@ -19,29 +19,26 @@
       </Style>
     </ResourceDictionary>
   </ContentView.Resources>
+
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="5*"></ColumnDefinition>
-      <ColumnDefinition Width="5*"></ColumnDefinition>
+      <ColumnDefinition Width="7*"></ColumnDefinition>
+      <ColumnDefinition Width="3*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-    </Grid.RowDefinitions>
-    <!--Linkerkant images-->
-    <custom:ImageGridView BindingContext="{Binding Customer.ImageUrls}"></custom:ImageGridView>
-    <!--Rechterkant tekst-->
-    <StackLayout Grid.Row="0" Grid.Column="1">
-      <StackLayout>
-        <Label HorizontalOptions="Center" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
-        <Label HorizontalOptions="Center" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-        <Label HorizontalOptions="Center" Text="{Binding Customer.LastName}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-        <Label HorizontalOptions="Center" Text="{Binding Customer.Address}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-        <Label HorizontalOptions="Center" Text="{Binding Customer.Contact}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-        <Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
-      </StackLayout>
+    <StackLayout  Grid.Column="0">
+      <Label HorizontalOptions="Center" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="{Binding Customer.DoorNo}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Center" Text="{Binding Customer.Mobile}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
       <!--noob fix-->
-      <BoxView HorizontalOptions="FillAndExpand"></BoxView>
+      <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
     </StackLayout>
 
+    <StackLayout Grid.Column="1">
+      <Button Text="" Image="water" x:Name="ButtonWater" Clicked="ButtonWater_OnClicked"></Button>
+      <Button Text="" Image="news"  x:Name="ButtonNews" Clicked="ButtonNews_OnClicked"></Button>
+      <!--<BoxView HorizontalOptions="Fill"></BoxView>-->
+    </StackLayout>
   </Grid>
 </ContentView>

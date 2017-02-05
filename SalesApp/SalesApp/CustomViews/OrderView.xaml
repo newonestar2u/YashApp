@@ -49,8 +49,8 @@
     <!--<custom:ImageGridView BindingContext="{Binding Product.ImageUrls}"></custom:ImageGridView>-->
     <!--Rechterkant tekst-->
     <Label Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" Text="Customer Id" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
-    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="Ordered By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="Ordered  Date" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="orderLineed By" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="orderLineed  Date" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
     <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Text="Approved" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
     <Label Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" Text="Balance" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
     <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Text="Discount" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>

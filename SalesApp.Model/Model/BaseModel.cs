@@ -1,8 +1,8 @@
 ﻿using System;
+using SalesApp.Model.Extensions;
+
 namespace SalesApp.Model.Model
 {
-    using SalesApp.Model.Extensions;
-
     public class BaseModel : NotifyModelChanged
     {
         public int Id { get; set; }

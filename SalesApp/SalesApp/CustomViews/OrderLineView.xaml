@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewModels="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             x:Class="SalesApp.CustomViews.OrderLineView">
+  <ContentView.BindingContext>
+    <viewModels:OrderLineViewModel></viewModels:OrderLineViewModel>
+  </ContentView.BindingContext>
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <!--<Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>-->
+      <Style x:Key="LblHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+      </Style>
+      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+      <ColumnDefinition Width="5*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+    <!--Linkerkant images-->
+    <!--<custom:ImageGridView BindingContext="{Binding Product.ImageUrls}"></custom:ImageGridView>-->
+    <!--Rechterkant tekst-->
+    <Switch Grid.Row="2" Grid.Column="1" IsEnabled="True"/>
+    <Label Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" Text="Product" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="Quantity" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="Amount" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+
+    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="{Binding OrderLine.Product}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Text="{Binding OrderLine.Quantity}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Text="{Binding OrderLine.Amount}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+
+  </Grid>
+</ContentView>
+

@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 namespace SalesApp.CustomViews
 {
     using SalesApp.ViewModels;
 
-    public partial class OrderList : ContentView
+    public partial class OrderList 
     {
         private IList<OrderViewModel> list;
         public OrderList()
@@ -24,10 +20,9 @@ namespace SalesApp.CustomViews
             if (list != null)
             {
                 Container.Children.Clear();
-                foreach (OrderViewModel product in list)
+                foreach (var product in list)
                 {
-                    OrderView productView = new OrderView();
-                    productView.BindingContext = product;
+                    var productView = new OrderView { BindingContext = product };
                     Container.Children.Add(productView);
                     if (product != list[list.Count - 1])
                     {

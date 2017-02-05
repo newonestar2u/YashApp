@@ -4,7 +4,7 @@
              x:Class="SalesApp.CustomViews.CustomerList"
              BindingContextChanged="List_OnBindingContextChanged">
   <ScrollView Orientation="Vertical">
-    <StackLayout x:Name="Container">
+    <StackLayout x:Name="Container"  HorizontalOptions="Fill">
 
     </StackLayout>
   </ScrollView>

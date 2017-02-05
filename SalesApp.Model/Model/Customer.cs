@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SalesApp.Model.Model
 {
-    using Newtonsoft.Json;
-
     public class Customer : BaseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string DoorNo { get; set; }
         public string CustomerId { get; set; }
         public string Address { get; set; }
         public string Mobile { get; set; }

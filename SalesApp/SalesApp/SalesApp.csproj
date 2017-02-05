@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BA91D55C-0018-434A-B6CC-3EC777961876}</ProjectGuid>
@@ -12,7 +12,7 @@
     <AssemblyName>SalesApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,6 +42,15 @@
     <Compile Include="App.cs" />
     <Compile Include="Converter\DownloadImageConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
+    <Compile Include="CustomViews\CartListView.xaml.cs">
+      <DependentUpon>CartListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\CartOrderView.xaml.cs">
+      <DependentUpon>CartOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\CartView.xaml.cs">
+      <DependentUpon>CartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomViews\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
     </Compile>
@@ -56,6 +65,12 @@
     </Compile>
     <Compile Include="CustomViews\ListDivider.xaml.cs">
       <DependentUpon>ListDivider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\OrderLineListView.xaml.cs">
+      <DependentUpon>OrderLineListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\OrderLineView.xaml.cs">
+      <DependentUpon>OrderLineView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomViews\OrderList.xaml.cs">
       <DependentUpon>OrderList.xaml</DependentUpon>
@@ -77,6 +92,9 @@
     </Compile>
     <Compile Include="Extensions\CustomViewModelBase.cs" />
     <Compile Include="Extensions\ObservableList.cs" />
+    <Compile Include="Pages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Contact.xaml.cs">
       <DependentUpon>Contact.xaml</DependentUpon>
     </Compile>
@@ -102,6 +120,7 @@
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\CartModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\CustomerAddModel.cs" />
     <Compile Include="ViewModels\CustomerDetailViewModel.cs" />
@@ -109,6 +128,8 @@
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OrderLinesViewModel.cs" />
+    <Compile Include="ViewModels\OrderLineViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailViewModel.cs" />
@@ -292,6 +313,45 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\CustomerAddPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\cp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomViews\CartListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomViews\CartView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomViews\CartOrderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomViews\OrderLineListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomViews\OrderLineView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

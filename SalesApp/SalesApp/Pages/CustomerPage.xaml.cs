@@ -51,8 +51,14 @@ namespace SalesApp.Pages
             {
                 Navigation.PushAsync(orderPage);
             }));
+
+            ToolbarItems.Add(new ToolbarItem("Cart", Icon = "cart.png", () =>
+             {
+                 Navigation.PushAsync(new CartPage());
+            }));
+
         }
 
-     
+
     }
 }

@@ -16,14 +16,20 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontAttributes" Value="Italic"></Setter>
       </Style>
+      <Style x:Key="editorStyle" TargetType="Editor">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontAttributes" Value="None"></Setter>
+      </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="5*"></ColumnDefinition>
-      <ColumnDefinition Width="5*"></ColumnDefinition>
+      <ColumnDefinition Width="3*"></ColumnDefinition>
+      <ColumnDefinition Width="7*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
       <RowDefinition Height="Auto"></RowDefinition>
       <RowDefinition Height="Auto"></RowDefinition>
       <RowDefinition Height="Auto"></RowDefinition>
@@ -35,20 +41,24 @@
     <!--Linkerkant images-->
     <!--<custom:ImageGridView BindingContext="{Binding Customer.ImageUrls}"></custom:ImageGridView>-->
     <!--Rechterkant tekst-->
-    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="End" Text="First Name : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="End" Text="Customer ID : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="End" Text="Last Name : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="End" Text="Address : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Label Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="End" Text="Contact : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-    <Editor Grid.Row="0" Grid.Column="1" Text="{Binding Customer.FirstName}" ></Editor>
-    <Editor Grid.Row="1" Grid.Column="1" Text="{Binding Customer.CustomerId}" ></Editor>
-    <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Customer.LastName}" ></Editor>
-    <Editor Grid.Row="3" Grid.Column="1" Text="{Binding Customer.Address}" ></Editor>
-    <Editor Grid.Row="4" Grid.Column="1" Text="{Binding Customer.Contact}"></Editor>
+    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="First Name : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Last Name : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Customer ID : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="3" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Door No : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="4" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Address : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="5" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Mobile : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Label Grid.Row="6" Grid.Column="0" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="End" Text="Contact : " Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Editor Grid.Row="0" Grid.Column="1" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource editorStyle}}" ></Editor>
+    <Editor Grid.Row="1" Grid.Column="1" Text="{Binding Customer.LastName}" Style="{Binding Source={StaticResource editorStyle}}" ></Editor>
+    <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource editorStyle}}" ></Editor>
+    <Editor Grid.Row="3" Grid.Column="1" Text="{Binding Customer.DoorNo}" Style="{Binding Source={StaticResource editorStyle}}"></Editor>
+    <Editor Grid.Row="4" Grid.Column="1" Text="{Binding Customer.Address}" Style="{Binding Source={StaticResource editorStyle}}" ></Editor>
+    <Editor Grid.Row="5" Grid.Column="1" Text="{Binding Customer.Mobile}" Style="{Binding Source={StaticResource editorStyle}}"></Editor>
+    <Editor Grid.Row="6" Grid.Column="1" Text="{Binding Customer.Contact}" Style="{Binding Source={StaticResource editorStyle}}"></Editor>
     <!--noob fix-->
     <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
-    <Button Grid.Row="5" Grid.Column="1" Text="Save" Command="{Binding BtnDetailClickCommand}" Clicked="OnButtonClicked"></Button>
-    <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Red" x:Name="LabelResult" Style="{Binding Source={StaticResource LblHeaderStyle}}" IsVisible="False"></Label>
+    <Button Grid.Row="7" Grid.Column="1" Text="Save" Command="{Binding BtnDetailClickCommand}" Clicked="OnButtonClicked"></Button>
+    <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Red" x:Name="LabelResult" Style="{Binding Source={StaticResource LblHeaderStyle}}" IsVisible="False"></Label>
   </Grid>
 
 </ContentPage>

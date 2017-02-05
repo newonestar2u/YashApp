@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace SalesApp.CustomViews
 {
-    public partial class ListDivider : ContentView
+    public partial class ListDivider 
     {
         public ListDivider()
         {
             InitializeComponent();
+            this.StackLayout.BackgroundColor = Color.Green;
+        }
+
+        public ListDivider(Color color)
+        {
+            InitializeComponent();
+            this.StackLayout.BackgroundColor = color;
         }
     }
 }

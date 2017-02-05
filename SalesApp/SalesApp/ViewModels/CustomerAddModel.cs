@@ -52,7 +52,6 @@ namespace SalesApp.ViewModels
         {
             var test = this.customer;
             var service = new CustomerService();
-            this.customer.Mobile = "12313";
             this.Customer.CreatedBy = "ABC";
             this.Customer.CreatedOn = DateTime.Now;
             this.Customer.UpdatedOn = DateTime.Now;

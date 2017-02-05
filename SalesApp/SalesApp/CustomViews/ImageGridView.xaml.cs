@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SalesApp.Model.Model;
 using Xamarin.Forms;
 
 namespace SalesApp.CustomViews
 {
-    public partial class ImageGridView : ContentView
+    public partial class ImageGridView 
     {
         private IList<string> ImageUrls { get; set; }
         public ImageGridView()
@@ -24,7 +20,7 @@ namespace SalesApp.CustomViews
                 Container.Children.Clear();
                 var rows = Convert.ToInt32(Math.Ceiling(Math.Sqrt(ImageUrls.Count)));
                 var columns = Convert.ToInt32(Math.Floor(Math.Sqrt(ImageUrls.Count)));
-                Grid vertical = new Grid();
+                var vertical = new Grid();
                 for (var i = 0; i < rows; i++)
                 {
                     Grid grid = new Grid();

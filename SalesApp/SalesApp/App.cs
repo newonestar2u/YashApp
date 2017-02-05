@@ -10,9 +10,11 @@ namespace SalesApp
 {
     public class App : Application
     {
+        public static List<Order> Orders = new List<Order>();
+
         public App()
         {
-             MainPage = new NavigationPage(new CustomerPage());
+            MainPage = new NavigationPage(new CustomerPage());
             //CustomerPage cusPage = new CustomerPage();
             //ProductPage productPage = new ProductPage();
             //OrderPage orderPage = new OrderPage();
@@ -20,7 +22,7 @@ namespace SalesApp
             //ToolbarItems.Add(new ToolbarItem("Customers", "", () =>
             //{
             //    Navigation.PushAsync(cusPage);
-              
+
             //}));
 
             //ToolbarItems.Add(new ToolbarItem("Products", "", () =>

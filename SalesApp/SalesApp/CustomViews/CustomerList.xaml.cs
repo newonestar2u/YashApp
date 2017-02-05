@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+using SalesApp.ViewModels;
 
 namespace SalesApp.CustomViews
 {
-    using SalesApp.ViewModels;
-
-    public partial class CustomerList : ContentView
+    public partial class CustomerList 
     {
         private IList<CustomerViewModel> list;
         public CustomerList()
@@ -24,10 +18,9 @@ namespace SalesApp.CustomViews
             if (list != null)
             {
                 Container.Children.Clear();
-                foreach (CustomerViewModel customer in list)
+                foreach (var customer in list)
                 {
-                    CustomerView customerView = new CustomerView();
-                    customerView.BindingContext = customer;
+                    var customerView = new CustomerView { BindingContext = customer };
                     Container.Children.Add(customerView);
                     if (customer != list[list.Count - 1])
                     {

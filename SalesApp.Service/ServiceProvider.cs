@@ -1,58 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+
 namespace SalesApp.Service
 {
-    using System.IO;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Runtime.InteropServices.WindowsRuntime;
-
-    using Newtonsoft.Json;
-
-    public static class ServiceProvider
+    public class ServiceProvider<T> where T : new()
     {
-        public static async Task<T> Request<T>(string route) where T : new()
+        private readonly Uri uri;
+
+        public ServiceProvider()
         {
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://desktop-hiepdas/Customer");
-            //request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
 
-            var client = new System.Net.Http.HttpClient();
-            client.BaseAddress = new Uri("http://127.0.0.1/");
-            try
-            {
-                var response = await client.GetAsync(route);
-                var placesJson = response.Content.ReadAsStringAsync().Result;
-                T placeobject = new T();
-                if (placesJson != "")
-                {
-                    placeobject = JsonConvert.DeserializeObject<T>(placesJson);
-                }
-                return placeobject;
-            }
-            catch (Exception ex)
-            {
+#if DEBUG
+            uri = new Uri("http://192.168.1.99/");
+#else
+            uri = new Uri("http://anandaa.azurewebsites.net");
+#endif
 
-                throw;
-            }
         }
 
-        public static async Task<List<T>> RequestCollection<T>(string route) where T : new()
+        public async Task<List<T>> RequestCollection()
         {
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://desktop-hiepdas/Customer");
-            //request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
             using (var client = new HttpClient())
             {
                 try
                 {
-                    var response = client.GetAsync("http://192.168.1.99/" + route).Result;
+                    var response = client.GetAsync(uri + $"{typeof(T).Name}s").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
-
                         // by calling .Result you are performing a synchronous call
                         var responseContent = response.Content;
 
@@ -75,26 +55,16 @@ namespace SalesApp.Service
             return new List<T>();
         }
 
-        public static async Task<T> PosTask<T>(string route, T data) where T : new()
+        public async Task<T> PostTask(T data)
         {
             using (var client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-                HttpContent httpContent = new StringContent(content.ToString(), Encoding.UTF8);
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "http://192.168.1.99/" + route);
-                request.Content = httpContent;
-
-                // string postBody = content.ToString();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                // HttpResponseMessage wcfResponse = await client.PostAsync("http://192.168.1.99/" + route, content);
-                //await DisplayTextResult(wcfResponse, OutputField);
 
                 try
                 {
-                    var response = client.PostAsync("http://192.168.1.99/" + route, content).Result;
-                    //var response = client.SendAsync(request).Result;
-                    //var response = client.PostAsync("http://192.168.1.99/" + route, httpContent).Result;
-
+                    var response = client.PostAsync(uri + $"{typeof(T).Name}s", content).Result;
                     if (response.IsSuccessStatusCode)
                     {
 
