@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight.Command;
+using SalesApp.Extensions;
+using SalesApp.Model.Model;
 
 namespace SalesApp.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
-
-    using Xamarin.Forms;
-
     public class OrderViewModel : CustomViewModelBase
     {
         private Order order;

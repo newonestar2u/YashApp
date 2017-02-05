@@ -9,14 +9,8 @@ namespace SalesApp.Pages
     {
         public CustomerPage()
         {
-
             InitializeComponent();
 
-            //Navigation.PushAsync(new CustomerDetail());
-            //Navigation.PushAsync(new Detail());
-            // CustomerService ps = new CustomerService();
-
-            //CustomerPage cusPage = new CustomerPage();
             ProductPage productPage = new ProductPage();
             OrderPage orderPage = new OrderPage();
 
@@ -58,7 +52,5 @@ namespace SalesApp.Pages
             }));
 
         }
-
-
     }
 }

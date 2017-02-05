@@ -7,28 +7,24 @@
   <ContentPage.BindingContext >
     <vm:CustomersViewModel></vm:CustomersViewModel>
   </ContentPage.BindingContext>
-  <!--<ContentPage.Resources>
+  <ContentPage.Resources>
     <ResourceDictionary>
       <Style x:Key="BStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="12"></Setter>
-        <Setter Property="FontAttributes" Value="Bold"></Setter>
-        <Setter Property="WidthRequest" Value="100px"></Setter>
-        <Setter Property="HeightRequest" Value="35px"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
+        <!--<Setter Property="FontAttributes" Value="Bold"></Setter>-->
+        <Setter Property="WidthRequest" Value="60"></Setter>
+        <Setter Property="HeightRequest" Value="35"></Setter>
       </Style>
-      <Style x:Key="LblDescriptionStyle" TargetType="Label">
+      <!--<Style x:Key="LblDescriptionStyle" TargetType="Label">
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontAttributes" Value="Italic"></Setter>
-      </Style>
+      </Style>-->
     </ResourceDictionary>
-  </ContentPage.Resources>-->
+  </ContentPage.Resources>
   <StackLayout Orientation="Vertical">
     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Teal">
       <!--<Label Text="Notworking at all" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>-->
-      <Button Image="man.png" ClassId="buttonNewCustomer"  Text="New" Command="{Binding BtnAddNewCustomerClickCommand} "></Button>
-      <Button Image="sync.png" ClassId="buttonRefresh" Text="Sync" Command="{Binding BtnRefreshClickCommand}"></Button>
-      <!--<Button Width="50px" Height="20px" Text="New"></Button>-->
-      <!--<Button ClassId="buttonEditCustomer" Text="New"></Button>-->
-      <!--<Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>-->
+      <Button  ClassId="buttonNewCustomer"  Style="{Binding Source={StaticResource BStyle}}"  Text="New" Command="{Binding BtnAddNewCustomerClickCommand} "></Button>
     </StackLayout>
     <StackLayout>
       <custom:CustomerList ClassId="Customer" BindingContext="{Binding Customers}"></custom:CustomerList>

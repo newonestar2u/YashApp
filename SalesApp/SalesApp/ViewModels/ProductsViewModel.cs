@@ -8,7 +8,7 @@ namespace SalesApp.ViewModels
 {
     public class ProductsViewModel : CustomViewModelBase
     {
-        private IList<ProductViewModel> products;
+        private IList<ProductViewModel> products = new List<ProductViewModel>();
 
         public IList<ProductViewModel> Products
         {
@@ -24,8 +24,13 @@ namespace SalesApp.ViewModels
 
         public ProductsViewModel()
         {
+            BindData();
+        }
+
+        private async void BindData()
+        {
             var productService = new ProductService();
-            this.Products = ConvertProductsToViewModels(productService.Get());
+            this.Products = ConvertProductsToViewModels(await productService.GetAsync());
         }
 
         private IList<ProductViewModel> ConvertProductsToViewModels(IList<Product> products)

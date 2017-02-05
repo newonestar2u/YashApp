@@ -3,15 +3,12 @@ using System.Linq;
 using SalesApp.Extensions;
 using SalesApp.Model.Model;
 using SalesApp.Service;
+using GalaSoft.MvvmLight.Command;
+using SalesApp.Pages;
+using Xamarin.Forms;
 
 namespace SalesApp.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.Pages;
-
-    using Xamarin.Forms;
-
     public class CustomersViewModel : CustomViewModelBase
     {
         private IList<CustomerViewModel> customers;
@@ -22,7 +19,7 @@ namespace SalesApp.ViewModels
             set
             {
                 this.customers = value;
-                ObservableList<CustomerViewModel> list = new ObservableList<CustomerViewModel>(this.customers);
+                var list = new ObservableList<CustomerViewModel>(this.customers);
                 list.CollectionChanged += RaiseCollectionChanged;
                 RaisePropertyChanged();
             }
@@ -30,15 +27,21 @@ namespace SalesApp.ViewModels
 
         public CustomersViewModel()
         {
-            var productService = new CustomerService();
-            this.Customers = ConvertProductsToViewModels(productService.Get());
+            this.customers = new List<CustomerViewModel>();
+            BindData();
             BtnAddNewCustomerClickCommand = new RelayCommand(this.btnAddNewCustomer);
-            BtnRefreshClickCommand = new RelayCommand(this.btnRefresh);
         }
 
-        private IList<CustomerViewModel> ConvertProductsToViewModels(IList<Customer> customers)
+        private async void BindData()
         {
-            return customers.Select(product => new CustomerViewModel(product)).ToList();
+            var productService = new CustomerService();
+            var result = await productService.GetAsync();
+            this.Customers = ConvertProductsToViewModels(result);
+        }
+
+        private IList<CustomerViewModel> ConvertProductsToViewModels(IEnumerable<Customer> customerList)
+        {
+            return customerList.Select(c => new CustomerViewModel(c)).ToList();
         }
 
         public RelayCommand BtnAddNewCustomerClickCommand { get; private set; }
@@ -46,17 +49,19 @@ namespace SalesApp.ViewModels
 
         private async void btnAddNewCustomer()
         {
-            ContentPage detail = new CustomerAddPage();
-            await ((NavigationPage)App.Current.MainPage).Navigation.PushAsync(detail);
-            CustomerAddModel pdvm = (CustomerAddModel)detail.BindingContext;
+            var newCustomer = new CustomerAddPage();
+            await Application.Current.MainPage.Navigation.PushAsync(newCustomer);
+            newCustomer.SaveComplete += NewCustomer_SaveComplete;
+            var pdvm = (CustomerAddModel)newCustomer.BindingContext;
             //  pdvm.Customer = this.Customer;
-            detail.BindingContext = pdvm;
+            newCustomer.BindingContext = pdvm;
         }
-        private async void btnRefresh()
+
+        private async void NewCustomer_SaveComplete(object sender, System.EventArgs e)
         {
-            Customers.Clear();
-            var productService = new CustomerService();
-            this.Customers = ConvertProductsToViewModels(productService.Get());
+            var customerService = new CustomerService();
+            this.Customers = ConvertProductsToViewModels(await customerService.GetAsync());
         }
+
     }
 }

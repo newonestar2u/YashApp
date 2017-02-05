@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SalesApp.Extensions;
+using SalesApp.Model.Model;
+using SalesApp.Service;
 
 namespace SalesApp.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
 
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
-    using SalesApp.Pages;
-    using SalesApp.Service;
-
-    using Xamarin.Forms;
 
     public class OrdersViewModel : CustomViewModelBase
     {
-        private IList<OrderViewModel> orders;
+        private IList<OrderViewModel> orders = new List<OrderViewModel>();
 
         public IList<OrderViewModel> Orders
         {
@@ -28,7 +22,7 @@ namespace SalesApp.ViewModels
             set
             {
                 this.orders = value;
-                ObservableList<OrderViewModel> list = new ObservableList<OrderViewModel>(this.orders);
+                var list = new ObservableList<OrderViewModel>(this.orders);
                 list.CollectionChanged += RaiseCollectionChanged;
                 RaisePropertyChanged();
             }
@@ -36,8 +30,13 @@ namespace SalesApp.ViewModels
 
         public OrdersViewModel()
         {
-            var productService = new OrderService();
-            this.Orders = ConvertProductsToViewModels(productService.Get());
+            BindData();
+        }
+
+        private async void BindData()
+        {
+            var orderService = new OrderService();
+            this.Orders = ConvertProductsToViewModels(await orderService.GetAsync());
         }
 
         private IList<OrderViewModel> ConvertProductsToViewModels(IList<Order> customers)

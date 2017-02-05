@@ -23,13 +23,13 @@ namespace SalesApp.Service
 
         }
 
-        public async Task<List<T>> RequestCollection()
+        public async Task<List<T>> RequestCollectionAsync()
         {
             using (var client = new HttpClient())
             {
                 try
                 {
-                    var response = client.GetAsync(uri + $"{typeof(T).Name}s").Result;
+                    var response = await client.GetAsync(uri + $"{typeof(T).Name}s");
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -37,7 +37,7 @@ namespace SalesApp.Service
                         var responseContent = response.Content;
 
                         // by calling .Result you are synchronously reading the result
-                        string placesJson = responseContent.ReadAsStringAsync().Result;
+                        var placesJson = responseContent.ReadAsStringAsync().Result;
                         var placeobject = new List<T>();
                         if (placesJson != "")
                         {
@@ -47,7 +47,39 @@ namespace SalesApp.Service
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
+                {
+                    // ignored
+                }
+            }
+            return new List<T>();
+        }
+
+        public async Task<List<T>> RequestCollection()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var response =  client.GetAsync(uri + $"{typeof(T).Name}s").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // by calling .Result you are performing a synchronous call
+                        var responseContent = response.Content;
+
+                        // by calling .Result you are synchronously reading the result
+                        var placesJson = responseContent.ReadAsStringAsync().Result;
+                        var placeobject = new List<T>();
+                        if (placesJson != "")
+                        {
+                            placeobject = JsonConvert.DeserializeObject<List<T>>(placesJson);
+                        }
+                        return placeobject;
+
+                    }
+                }
+                catch (Exception ex)
                 {
                     // ignored
                 }

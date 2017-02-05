@@ -39,7 +39,7 @@
     <!--Linkerkant images-->
     <!--<custom:ImageGridView BindingContext="{Binding Product.ImageUrls}"></custom:ImageGridView>-->
     <!--Rechterkant tekst-->
-    <Switch Grid.Row="2" Grid.Column="1" IsEnabled="True"/>
+    <Switch Grid.Row="2" Grid.Column="1" IsEnabled="True" IsToggled="{Binding OrderLine.Set}"/>
     <Label Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" Text="Product" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
     <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="Quantity" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
     <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="Amount" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>

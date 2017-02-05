@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SalesApp.Service.Contracts;
+using System.Threading.Tasks;
 
 namespace SalesApp.Service
 {
@@ -22,6 +23,12 @@ namespace SalesApp.Service
         {
             var access = Provider.RequestCollection();
             return access.Result;
+        }
+
+        public async Task<List<T>> GetAsync()
+        {
+            var access = await Provider.RequestCollectionAsync();
+            return access;
         }
 
         public T Post(T entity)

@@ -1,33 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using SalesApp.ViewModels;
 using Xamarin.Forms;
 
 namespace SalesApp.Pages
 {
-    using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.ViewModels;
-
-    public partial class CustomerAddPage : ContentPage
+    public partial class CustomerAddPage
     {
+        public event EventHandler SaveComplete;
+
         public CustomerAddPage()
         {
             InitializeComponent();
             this.BindingContextChanged += CustomerAddPage_BindingContextChanged;
         }
 
-        void OnButtonClicked(object sender, EventArgs args)
+        private void OnButtonClicked(object sender, EventArgs args)
         {
             this.LabelResult.Text = "";
-            CustomerAddModel model = (CustomerAddModel)this.BindingContext;
-            if (model.Customer.Id == 0)
+            var model = (CustomerAddModel)this.BindingContext;
+            if (model == null || model.Customer.Id == 0)
             {
                 this.LabelResult.Text = "Failed to insert.";
                 this.LabelResult.IsVisible = true;
+            }
+            else
+            {
+                this.SaveComplete?.Invoke(this, null);
             }
         }
 

@@ -57,7 +57,7 @@
     <Editor Grid.Row="6" Grid.Column="1" Text="{Binding Customer.Contact}" Style="{Binding Source={StaticResource editorStyle}}"></Editor>
     <!--noob fix-->
     <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
-    <Button Grid.Row="7" Grid.Column="1" Text="Save" Command="{Binding BtnDetailClickCommand}" Clicked="OnButtonClicked"></Button>
+    <Button Grid.Row="7" Grid.Column="1" Text="Save" Command="{Binding BtnSaveCustomer}" Clicked="OnButtonClicked"></Button>
     <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" TextColor="Red" x:Name="LabelResult" Style="{Binding Source={StaticResource LblHeaderStyle}}" IsVisible="False"></Label>
   </Grid>
 

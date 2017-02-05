@@ -1,17 +1,10 @@
-﻿using System;
+﻿using Xamarin.Forms;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+using SalesApp.ViewModels;
 
 namespace SalesApp.Pages
 {
-    using System.Collections.Specialized;
-
-    using GalaSoft.MvvmLight;
-
+   
     public partial class CartPage : ContentPage
     {
         public CartPage()
@@ -20,6 +13,11 @@ namespace SalesApp.Pages
             //this.BindingContext = this;
             //this.Count = App.Orders.Count;
             //this.UpdateChildrenLayout();
+        }
+
+        private void ButtonCheckOutClicked(object sender, System.EventArgs e)
+        {
+            var orderModels = (List<OrderViewModel>)this.CartListView.BindingContext;
         }
     }
 }

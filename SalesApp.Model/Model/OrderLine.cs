@@ -11,5 +11,6 @@ namespace SalesApp.Model.Model
         public string DeliveredBy { get; set; }
         public decimal Amount { get; set; }
         public decimal Discount { get; set; }
+        public bool Set { get; set; }
     }
 }

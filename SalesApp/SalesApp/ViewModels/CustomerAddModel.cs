@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using SalesApp.Extensions;
+using SalesApp.Model.Model;
+using SalesApp.Service;
+using Xamarin.Forms;
 
 namespace SalesApp.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
-    using SalesApp.Pages;
-    using SalesApp.Service;
-
-    using Xamarin.Forms;
 
     public class CustomerAddModel : CustomViewModelBase
     {
@@ -43,12 +36,12 @@ namespace SalesApp.ViewModels
 
         private void InstantiateCommands()
         {
-            BtnDetailClickCommand = new RelayCommand(btnDetailClick);
+            this.BtnSaveCustomer = new RelayCommand(this.BtnSaveClick);
         }
 
-        public RelayCommand BtnDetailClickCommand { get; private set; }
+        public RelayCommand BtnSaveCustomer { get; private set; }
 
-        private async void btnDetailClick()
+        private async void BtnSaveClick()
         {
             var test = this.customer;
             var service = new CustomerService();
