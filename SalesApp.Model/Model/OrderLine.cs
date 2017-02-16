@@ -1,7 +1,9 @@
 ﻿using System;
+using SalesApp.Model.Attributes;
 
 namespace SalesApp.Model.Model
 {
+    [Uri("Orders/{OrderNumber}/OrderLines")]
     public class OrderLine : BaseModel
     {
         public int OrderNumber { get; set; }

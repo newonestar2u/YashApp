@@ -39,5 +39,26 @@ namespace SalesApp.ViewModels
         {
             return customers.Select(product => new OrderViewModel(product)).ToList();
         }
+
+        public void SaveChanges()
+        {
+            foreach (var order in this.orders)
+            {
+
+                var orderService = new OrderService();
+                order.Order.SalesBy = "megha";
+                order.Order = orderService.Post(order.Order);
+
+                var orderLines = order.OrderLinesViewModel.Select(x => x.OrderLine);
+
+                var orderLineService = new OrderLineService();
+
+                foreach (var orderLine in orderLines)
+                {
+                    orderLine.OrderNumber = order.Order.Id;
+                    orderLineService.Post(orderLine);
+                }
+            }
+        }
     }
 }

@@ -5,10 +5,16 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace SalesApp.Service
 {
-    public class ServiceProvider<T> where T : new()
+    using System.Linq;
+
+    using SalesApp.Model.Attributes;
+    using SalesApp.Model.Model;
+
+    public class ServiceProvider<T> where T : BaseModel, new()
     {
         private readonly Uri uri;
 
@@ -61,7 +67,7 @@ namespace SalesApp.Service
             {
                 try
                 {
-                    var response =  client.GetAsync(uri + $"{typeof(T).Name}s").Result;
+                    var response = client.GetAsync(uri + this.GetUri(typeof(T))).Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -96,7 +102,7 @@ namespace SalesApp.Service
 
                 try
                 {
-                    var response = client.PostAsync(uri + $"{typeof(T).Name}s", content).Result;
+                    var response = client.PostAsync(this.uri + this.GetUri(data), content).Result;
                     if (response.IsSuccessStatusCode)
                     {
 
@@ -114,7 +120,7 @@ namespace SalesApp.Service
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // ignored
                 }
@@ -122,6 +128,22 @@ namespace SalesApp.Service
             return default(T);
         }
 
+        private string GetUri<T>(T data) where T : BaseModel
+        {
+            var uri = typeof(T).GetTypeInfo().GetCustomAttribute<UriAttribute>().Uri;
+            if (uri.Contains("{"))
+            {
+                var property = uri.Substring(uri.IndexOf("{") + 1, uri.IndexOf("}") - uri.IndexOf("{") -1);
+                var val = data.GetType().GetRuntimeProperty(property).GetValue(data, null);
+                uri = uri.Replace("{" + property + "}", val.ToString());
+            }
+            return uri;
+        }
+
+        private string GetUri(Type type)
+        {
+            return typeof(T).GetTypeInfo().GetCustomAttribute<UriAttribute>().Uri;
+        }
     }
 
 }

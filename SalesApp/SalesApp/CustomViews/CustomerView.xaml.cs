@@ -20,15 +20,24 @@ namespace SalesApp.CustomViews
             {
                 var order = App.Orders.First(x => x.CustomerId == model.Customer.CustomerId);
 
-                var orderline = new OrderLine
+                var orderLine = order.OrderLines.AsQueryable().FirstOrDefault(x => x.Product == "Water");
+
+                if (orderLine != null)
                 {
-                    Amount = 100,
-                    DeliveredBy = "",
-                    Product = "Water",
-                    Quantity = 1,
-                    OrderNumber = order.Id
-                };
-                order.OrderLines.Add(orderline);
+                    orderLine.Quantity += 1;
+                }
+                else
+                {
+                    var newOrderline = new OrderLine
+                    {
+                        Amount = 100,
+                        DeliveredBy = "",
+                        Product = "Water",
+                        Quantity = 1,
+                        OrderNumber = order.Id
+                    };
+                    order.OrderLines.Add(newOrderline);
+                }
             }
             else
             {
@@ -56,15 +65,24 @@ namespace SalesApp.CustomViews
             {
                 var order = App.Orders.First(x => x.CustomerId == model.Customer.CustomerId);
 
-                var orderline = new OrderLine
+                var orderLine = order.OrderLines.AsQueryable().FirstOrDefault(x => x.Product == "Paper");
+
+                if (orderLine != null)
                 {
-                    Amount = 5,
-                    DeliveredBy = "",
-                    Product = "Paper",
-                    Quantity = 1,
-                    OrderNumber = order.Id
-                };
-                order.OrderLines.Add(orderline);
+                    orderLine.Quantity += 1;
+                }
+                else
+                {
+                    var newOrderline = new OrderLine
+                    {
+                        Amount = 100,
+                        DeliveredBy = "",
+                        Product = "Paper",
+                        Quantity = 1,
+                        OrderNumber = order.Id
+                    };
+                    order.OrderLines.Add(newOrderline);
+                }
             }
             else
             {

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using SalesApp.Model.Attributes;
 
 namespace SalesApp.Model.Model
 {
+    [Uri("Customers")]
     public class Customer : BaseModel
     {
         public string FirstName { get; set; }

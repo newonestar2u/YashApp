@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using SalesApp.Model.Attributes;
 
 namespace SalesApp.Model.Model
 {
+    [Uri("Products")]
     public class Product : BaseModel
     {
         public string Name { get; set; }

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace SalesApp.Service
 {
-    public abstract class ServiceBase<T> : IYasService<T> where T : new()
+    using SalesApp.Model.Model;
+    public abstract class ServiceBase<T> : IYasService<T> where T : BaseModel, new()
     {
         protected readonly ServiceProvider<T> Provider;
 

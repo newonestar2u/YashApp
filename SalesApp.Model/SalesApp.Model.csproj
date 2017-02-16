@@ -40,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attributes\UriAttribute.cs" />
     <Compile Include="Extensions\NotifyModelChanged.cs" />
     <Compile Include="Extensions\ObservableList.cs" />
     <Compile Include="Model\BaseModel.cs" />

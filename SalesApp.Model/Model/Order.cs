@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using SalesApp.Model.Attributes;
 
 namespace SalesApp.Model.Model
 {
+    [Uri("Orders")]
     public class Order : BaseModel
     {
         public string CustomerId { get; set; }
