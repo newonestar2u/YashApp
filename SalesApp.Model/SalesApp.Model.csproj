@@ -45,6 +45,7 @@
     <Compile Include="Extensions\ObservableList.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderLine.cs" />
     <Compile Include="Model\Price.cs" />

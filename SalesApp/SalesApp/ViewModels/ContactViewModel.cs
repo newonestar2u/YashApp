@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SalesApp.Extensions;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    public class ContactViewModel:CustomViewModelBase
+    using SalesApp.Extensions;
+
+    public class ContactViewModel : CustomViewModelBase
     {
         #region fields
         private string address;
@@ -66,7 +61,7 @@ namespace SalesApp.ViewModels
             Address = "Katarinavägen 15, Stockholm, Zweden";
             PhoneNumber = "056 475 589";
             Email = "battlefield@eadice.com";
-            GoogleMapsUri = "https://maps.googleapis.com/maps/api/staticmap?center="+  Address + "&size=900x600";
+            GoogleMapsUri = "https://maps.googleapis.com/maps/api/staticmap?center=" + Address + "&size=900x600";
         }
         #endregion
     }

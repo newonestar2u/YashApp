@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
+    using System.ComponentModel;
+    using Extensions;
+    using Model.Model;
+
     public class ProductDetailViewModel : CustomViewModelBase
     {
         private Product product;

@@ -3,8 +3,12 @@ using System.Threading.Tasks;
 
 namespace SalesApp.Service.Contracts
 {
+    public interface IYasService
+    {
 
-    public interface IYasService<T>
+    }
+
+    public interface IYasService<T> : IYasService
     {
         T GetById();
 

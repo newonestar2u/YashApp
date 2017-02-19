@@ -8,6 +8,6 @@
     <vm:OrdersViewModel></vm:OrdersViewModel>
   </ContentPage.BindingContext>
   <StackLayout>
-    <custom:OrderList ClassId="OrdersPage" BindingContext="{Binding Orders}"></custom:OrderList>
+    <custom:OrderList ClassId="ordersViewModelsPage" BindingContext="{Binding Orders}"></custom:OrderList>
   </StackLayout>
 </ContentPage>

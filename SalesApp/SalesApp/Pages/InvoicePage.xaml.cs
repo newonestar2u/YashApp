@@ -2,12 +2,11 @@
 
 namespace SalesApp.Pages
 {
-    public partial class Contact : ContentPage
+    public partial class InvoicePage : ContentPage
     {
-        public Contact()
+        public InvoicePage()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace SalesApp.CustomViews
+﻿namespace SalesApp.CustomViews
 {
     public partial class OrderView 
     {

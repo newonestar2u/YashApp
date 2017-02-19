@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using SalesApp.Service.Contracts;
-using System.Threading.Tasks;
-
-namespace SalesApp.Service
+﻿namespace SalesApp.Service
 {
-    using SalesApp.Model.Model;
-    public abstract class ServiceBase<T> : IYasService<T> where T : BaseModel, new()
+    using System;
+    using System.Collections.Generic;
+    using Contracts;
+    using System.Threading.Tasks;
+    using Model.Model;
+
+    public class ServiceBase<T> : IYasService<T> where T : BaseModel, new()
     {
         protected readonly ServiceProvider<T> Provider;
 
-        protected ServiceBase()
+        public ServiceBase()
         {
             Provider = new ServiceProvider<T>();
         }
@@ -23,7 +23,7 @@ namespace SalesApp.Service
         public List<T> Get()
         {
             var access = Provider.RequestCollection();
-            return access.Result;
+            return access;
         }
 
         public async Task<List<T>> GetAsync()

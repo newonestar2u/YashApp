@@ -50,6 +50,7 @@
     <Compile Include="Contracts\IYasService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="OrderLineService.cs" />
+    <Compile Include="InvoiceService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

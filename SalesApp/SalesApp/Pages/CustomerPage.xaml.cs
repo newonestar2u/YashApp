@@ -1,18 +1,15 @@
 ﻿using Xamarin.Forms;
 namespace SalesApp.Pages
 {
-    using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.ViewModels;
-
     public partial class CustomerPage : ContentPage
     {
         public CustomerPage()
         {
             InitializeComponent();
 
-            ProductPage productPage = new ProductPage();
-            OrderPage orderPage = new OrderPage();
+            var productPage = new ProductPage();
+            var orderPage = new OrderPage();
+            var invoicePage = new InvoicePage();
 
             ToolbarItems.Add(new ToolbarItem("Customers", "", () =>
             {
@@ -46,9 +43,14 @@ namespace SalesApp.Pages
                 Navigation.PushAsync(orderPage);
             }));
 
+            ToolbarItems.Add(new ToolbarItem("Invoice", "", () =>
+            {
+                Navigation.PushAsync(invoicePage);
+            }));
+
             ToolbarItems.Add(new ToolbarItem("Cart", Icon = "cart.png", () =>
-             {
-                 Navigation.PushAsync(new CartPage());
+            {
+                Navigation.PushAsync(new CartPage());
             }));
 
         }

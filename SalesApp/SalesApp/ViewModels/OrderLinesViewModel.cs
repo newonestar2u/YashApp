@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
+    using System.Collections.Generic;
 
-    public class OrderLinesViewModel : CustomViewModelBase
+    using Extensions;
+    using Model.Model;
+
+    public class OrderLinesViewModel : CustomViewModelBase<Order>
     {
         private IList<OrderLineViewModel> orders;
 
@@ -17,25 +13,15 @@ namespace SalesApp.ViewModels
         {
             get
             {
-                return this.orders;
+                return orders;
             }
             set
             {
-                this.orders = value;
-                ObservableList<OrderLineViewModel> list = new ObservableList<OrderLineViewModel>(this.orders);
+                orders = value;
+                var list = new ObservableList<OrderLineViewModel>(orders);
                 list.CollectionChanged += RaiseCollectionChanged;
                 RaisePropertyChanged();
             }
-        }
-
-        public OrderLinesViewModel()
-        {
-
-        }
-
-        private IList<OrderLineViewModel> ConvertProductsToViewModels(IList<OrderLine> customers)
-        {
-            return customers.Select(product => new OrderLineViewModel(product)).ToList();
         }
     }
 }

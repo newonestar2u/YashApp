@@ -30,6 +30,7 @@ namespace SalesApp.CustomViews
                 {
                     var newOrderline = new OrderLine
                     {
+                        Set = true,
                         Amount = 100,
                         DeliveredBy = "",
                         Product = "Water",
@@ -41,10 +42,11 @@ namespace SalesApp.CustomViews
             }
             else
             {
-                var order = new Order { CustomerId = model.Customer.CustomerId, OrderBy = "System" };
+                var order = new Order { CustomerId = model.Customer.CustomerId, OrderBy = "System", Set = true };
 
                 var orderline = new OrderLine
                 {
+                    Set = true,
                     Amount = 100,
                     DeliveredBy = "",
                     Product = "Water",
@@ -75,6 +77,7 @@ namespace SalesApp.CustomViews
                 {
                     var newOrderline = new OrderLine
                     {
+                        Set = true,
                         Amount = 100,
                         DeliveredBy = "",
                         Product = "Paper",
@@ -86,13 +89,14 @@ namespace SalesApp.CustomViews
             }
             else
             {
-                var order = new Order { CustomerId = model.Customer.CustomerId, OrderBy = "System" };
+                var order = new Order { CustomerId = model.Customer.CustomerId, OrderBy = "System", Set = true};
 
                 var orderline = new OrderLine
                 {
+                    Set = true,
                     Amount = 6,
                     DeliveredBy = "",
-                    Product = "paper",
+                    Product = "Paper",
                     Quantity = 1,
                     OrderNumber = order.Id
                 };
@@ -100,6 +104,11 @@ namespace SalesApp.CustomViews
 
                 App.Orders.Add(order);
             }
+        }
+
+        private void ButtonTakeOrder_OnClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

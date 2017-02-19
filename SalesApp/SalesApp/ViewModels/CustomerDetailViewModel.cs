@@ -1,19 +1,20 @@
-﻿using System.ComponentModel;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
+    using System.ComponentModel;
+    using Extensions;
+    using Model.Model;
+
     class CustomerDetailViewModel : CustomViewModelBase
     {
         private Customer customer;
 
         public Customer Customer
         {
-            get { return this.customer; }
+            get { return customer; }
             set
             {
-                this.customer = value;
-                this.customer.PropertyChanged += this.CustomerOnPropertyChanged;
+                customer = value;
+                customer.PropertyChanged += CustomerOnPropertyChanged;
                 RaisePropertyChanged();
             }
         }
@@ -24,7 +25,7 @@ namespace SalesApp.ViewModels
 
         public CustomerDetailViewModel(Customer customer)
         {
-            this.Customer = customer;
+            Customer = customer;
             InstantiateCommands();
         }
 

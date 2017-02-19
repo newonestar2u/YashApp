@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-using SalesApp.Service;
-using GalaSoft.MvvmLight.Command;
-using SalesApp.Pages;
-using Xamarin.Forms;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    public class CustomersViewModel : CustomViewModelBase
+    using System.Collections.Generic;
+    using Extensions;
+    using Model.Model;
+    using Service;
+    using GalaSoft.MvvmLight.Command;
+    using Pages;
+    using Xamarin.Forms;
+
+    public class CustomersViewModel : CustomViewModelBase<Customer>
     {
         private IList<CustomerViewModel> customers;
 
@@ -29,39 +28,32 @@ namespace SalesApp.ViewModels
         {
             this.customers = new List<CustomerViewModel>();
             BindData();
-            BtnAddNewCustomerClickCommand = new RelayCommand(this.btnAddNewCustomer);
+            BtnAddNewCustomerClickCommand = new RelayCommand(this.BtnAddNewCustomer);
         }
 
         private async void BindData()
         {
             var productService = new CustomerService();
             var result = await productService.GetAsync();
-            this.Customers = ConvertProductsToViewModels(result);
-        }
-
-        private IList<CustomerViewModel> ConvertProductsToViewModels(IEnumerable<Customer> customerList)
-        {
-            return customerList.Select(c => new CustomerViewModel(c)).ToList();
+            Customers = base.ConverToModelView<CustomerViewModel>(result);
         }
 
         public RelayCommand BtnAddNewCustomerClickCommand { get; private set; }
-        public RelayCommand BtnRefreshClickCommand { get; private set; }
 
-        private async void btnAddNewCustomer()
+        private async void BtnAddNewCustomer()
         {
             var newCustomer = new CustomerAddPage();
             await Application.Current.MainPage.Navigation.PushAsync(newCustomer);
-            newCustomer.SaveComplete += NewCustomer_SaveComplete;
+            newCustomer.SaveComplete += NewCustomerSaveComplete;
             var pdvm = (CustomerAddModel)newCustomer.BindingContext;
             //  pdvm.Customer = this.Customer;
             newCustomer.BindingContext = pdvm;
         }
 
-        private async void NewCustomer_SaveComplete(object sender, System.EventArgs e)
+        private async void NewCustomerSaveComplete(object sender, System.EventArgs e)
         {
             var customerService = new CustomerService();
-            this.Customers = ConvertProductsToViewModels(await customerService.GetAsync());
+            Customers = base.ConverToModelView<CustomerViewModel>(await customerService.GetAsync());
         }
-
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SalesApp.Model.Model;
-using SalesApp.Pages;
-using Xamarin.Forms;
-
-namespace SalesApp
+﻿namespace SalesApp
 {
+    using System.Collections.Generic;
+    using Model.Model;
+    using Pages;
+    using Xamarin.Forms;
+
     public class App : Application
     {
         public static List<Order> Orders = new List<Order>();
@@ -30,7 +27,7 @@ namespace SalesApp
             //    Navigation.PushAsync(productPage);
             //}));
 
-            //ToolbarItems.Add(new ToolbarItem("Orders", "", () =>
+            //ToolbarItems.Add(new ToolbarItem("ordersViewModels", "", () =>
             //{
             //    Navigation.PushAsync(orderPage);
             //}));

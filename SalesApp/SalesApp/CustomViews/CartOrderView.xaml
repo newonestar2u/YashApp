@@ -30,12 +30,16 @@
       <RowDefinition Height="Auto"></RowDefinition>
       <RowDefinition Height="Auto"></RowDefinition>
       <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
     </Grid.RowDefinitions>
     <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="End" Text="Customer ID" Style="{Binding Source={StaticResource LblHeaderStyle }}"></Label>
     <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" Text="{Binding Order.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
     <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="End" Text="Total Orders" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
     <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" Text="{Binding Order.OrderLines.Count}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+    <Switch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="End" IsEnabled="True" IsToggled="{Binding Order.Set}"/>
+
     <customViews:OrderLineListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  ClassId="OrderLines" BindingContext="{Binding OrderLinesViewModel}"></customViews:OrderLineListView>
+    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Remove" x:Name="ButtonRemove" Clicked="ButtonRemoveClicked"></Button>
     <!--noob fix-->
     <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
   </Grid>

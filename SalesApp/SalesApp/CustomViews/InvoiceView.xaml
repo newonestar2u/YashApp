@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:SalesApp.ViewModels;assembly=SalesApp"
+             x:Class="SalesApp.CustomViews.InvoiceView">
+  <ContentView.BindingContext>
+    <viewmodel:InvoiceViewModel></viewmodel:InvoiceViewModel>
+  </ContentView.BindingContext>
+  <StackLayout>
+    <Label HorizontalOptions="Center" Text="{Binding Invoice.CustomerId}" ></Label>
+  </StackLayout>
+</ContentView>

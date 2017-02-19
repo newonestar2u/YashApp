@@ -17,6 +17,7 @@ namespace SalesApp.Model.Model
         public decimal Balance { get; set; }
         public decimal Payment { get; set; }
         public string PaymentType { get; set; }
+        public bool Set { get; set; }
 
         public List<OrderLine> OrderLines { get; set; }
 

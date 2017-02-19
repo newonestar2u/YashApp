@@ -8,7 +8,7 @@
     <vm:CartModel></vm:CartModel>
   </ContentPage.BindingContext>
   <StackLayout>
-    <customViews:CartListView ClassId="orderLines" x:Name="CartListView"  BindingContext="{Binding Orders}"></customViews:CartListView>
+    <customViews:CartListView ClassId="orderLines" x:Name="CartListView" BindingContext="{Binding OrdersViewModels}"></customViews:CartListView>
     <Button Text="Check Out" x:Name="ButtonCheckOut" Clicked="ButtonCheckOutClicked"></Button>
   </StackLayout>
 </ContentPage>

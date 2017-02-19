@@ -1,12 +1,12 @@
-﻿using GalaSoft.MvvmLight.Command;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-using SalesApp.Pages;
-using Xamarin.Forms;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    public class CustomerViewModel : CustomViewModelBase
+    using GalaSoft.MvvmLight.Command;
+    using Extensions;
+    using Model.Model;
+    using Pages;
+    using Xamarin.Forms;
+
+    public class CustomerViewModel : CustomViewModelBase<Customer>
     {
         private Customer customer;
 

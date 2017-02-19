@@ -2,12 +2,11 @@
 
 namespace SalesApp.CustomViews
 {
-    public partial class PriceListItem : ContentView
+    public partial class InvoiceView : ContentView
     {
-        public PriceListItem()
+        public InvoiceView()
         {
             InitializeComponent();
         }
-
     }
 }

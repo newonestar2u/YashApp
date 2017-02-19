@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Xamarin.Forms;
+
 namespace SalesApp.CustomViews
 {
     using SalesApp.ViewModels;
 
-    public partial class OrderList 
+    public partial class InvoiceList : ContentView
     {
-        private IList<OrderViewModel> list;
-        public OrderList()
+        private IList<InvoiceViewModel> list;
+        public InvoiceList()
         {
             InitializeComponent();
         }
 
         private void List_OnBindingContextChanged(object sender, EventArgs e)
         {
-            list = (IList<OrderViewModel>)this.BindingContext;
+            list = (IList<InvoiceViewModel>)this.BindingContext;
             if (list != null)
             {
                 Container.Children.Clear();
-                foreach (var order in list)
+                foreach (var invoice in list)
                 {
-                    var productView = new OrderView { BindingContext = order };
-                    Container.Children.Add(productView);
-                    if (order != list[list.Count - 1])
+                    var customerView = new InvoiceView { BindingContext = invoice };
+                    Container.Children.Add(customerView);
+                    if (invoice != list[list.Count - 1])
                     {
                         Container.Children.Add(new ListDivider());
                     }

@@ -1,12 +1,11 @@
-﻿using System;
-using GalaSoft.MvvmLight.Command;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-using SalesApp.Service;
-using Xamarin.Forms;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
+    using System;
+    using GalaSoft.MvvmLight.Command;
+    using Extensions;
+    using Model.Model;
+    using Service;
+    using Xamarin.Forms;
 
     public class CustomerAddModel : CustomViewModelBase
     {
@@ -41,7 +40,7 @@ namespace SalesApp.ViewModels
 
         public RelayCommand BtnSaveCustomer { get; private set; }
 
-        private async void BtnSaveClick()
+        private void BtnSaveClick()
         {
             var test = this.customer;
             var service = new CustomerService();

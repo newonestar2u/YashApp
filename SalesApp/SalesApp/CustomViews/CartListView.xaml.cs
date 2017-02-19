@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using SalesApp.ViewModels;
-
-namespace SalesApp.CustomViews
+﻿namespace SalesApp.CustomViews
 {
+    using System;
+    using System.Collections.Generic;
+    using ViewModels;
+
     public partial class CartListView 
     {
         private IList<OrderViewModel> list;

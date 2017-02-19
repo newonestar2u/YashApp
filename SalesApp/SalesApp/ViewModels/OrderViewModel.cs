@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using GalaSoft.MvvmLight.Command;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    public class OrderViewModel : CustomViewModelBase
+    using System.Collections.Generic;
+    using GalaSoft.MvvmLight.Command;
+    using Extensions;
+    using Model.Model;
+
+    public class OrderViewModel : CustomViewModelBase<Order>
     {
         private Order order;
 
         public Order Order
         {
-            get { return this.order; }
+            get { return order; }
             set
             {
-                this.order = value;
+                order = value;
                 RaisePropertyChanged();
             }
         }
@@ -22,18 +22,17 @@ namespace SalesApp.ViewModels
         private List<OrderLineViewModel> orderLinesViewModel;
         public List<OrderLineViewModel> OrderLinesViewModel
         {
-            get { return this.orderLinesViewModel; }
+            get { return orderLinesViewModel; }
             set
             {
-                this.orderLinesViewModel = value;
+                orderLinesViewModel = value;
                 RaisePropertyChanged();
             }
         }
 
-
         public OrderViewModel(Order order) : this()
         {
-            this.Order = order;
+            Order = order;
             OrderLinesViewModel= new List<OrderLineViewModel>();
             foreach (OrderLine ol in order.OrderLines)
             {

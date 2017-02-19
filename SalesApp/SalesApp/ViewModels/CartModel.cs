@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
-    using SalesApp.CustomViews;
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
-    using SalesApp.Service;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Extensions;
+    using Model.Model;
+    using Service;
+    using Xamarin.Forms;
 
-    public class CartModel : CustomViewModelBase
+    public class CartModel : CustomViewModelBase<Order>
     {
-        private IList<OrderViewModel> orders;
+        public event EventHandler SaveComplete;
 
-        public IList<OrderViewModel> Orders
+        private IList<OrderViewModel> ordersViewModels;
+
+        public IList<OrderViewModel> OrdersViewModels
         {
             get
             {
-                return this.orders;
+                return ordersViewModels;
             }
             set
             {
-                this.orders = value;
-                ObservableList<OrderViewModel> list = new ObservableList<OrderViewModel>(this.orders);
+                ordersViewModels = value;
+                var list = new ObservableList<OrderViewModel>(ordersViewModels.ToList());
                 list.CollectionChanged += RaiseCollectionChanged;
                 RaisePropertyChanged();
             }
@@ -32,31 +31,21 @@ namespace SalesApp.ViewModels
 
         public CartModel()
         {
-            this.Orders = ConvertProductsToViewModels(App.Orders);
-        }
-
-        private IList<OrderViewModel> ConvertProductsToViewModels(IList<Order> customers)
-        {
-            return customers.Select(product => new OrderViewModel(product)).ToList();
+            OrdersViewModels = ConverToModelView<OrderViewModel>(App.Orders);
         }
 
         public void SaveChanges()
         {
-            foreach (var order in this.orders)
+            foreach (var order in this.ordersViewModels)
             {
-
                 var orderService = new OrderService();
                 order.Order.SalesBy = "megha";
-                order.Order = orderService.Post(order.Order);
-
-                var orderLines = order.OrderLinesViewModel.Select(x => x.OrderLine);
-
-                var orderLineService = new OrderLineService();
-
-                foreach (var orderLine in orderLines)
+                var result = orderService.Post(order.Order);
+                if (result != default(Order))
                 {
-                    orderLine.OrderNumber = order.Order.Id;
-                    orderLineService.Post(orderLine);
+                    App.Orders.Clear();
+                    SaveComplete?.Invoke(this, null);
+                    Application.Current.MainPage.SendBackButtonPressed();
                 }
             }
         }

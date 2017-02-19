@@ -9,8 +9,6 @@ using System.Reflection;
 
 namespace SalesApp.Service
 {
-    using System.Linq;
-
     using SalesApp.Model.Attributes;
     using SalesApp.Model.Model;
 
@@ -61,7 +59,7 @@ namespace SalesApp.Service
             return new List<T>();
         }
 
-        public async Task<List<T>> RequestCollection()
+        public List<T> RequestCollection()
         {
             using (var client = new HttpClient())
             {
@@ -97,6 +95,7 @@ namespace SalesApp.Service
         {
             using (var client = new HttpClient())
             {
+                var t = JsonConvert.SerializeObject(data);
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

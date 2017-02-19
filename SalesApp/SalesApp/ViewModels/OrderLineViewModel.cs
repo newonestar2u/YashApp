@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-
-    using SalesApp.Extensions;
-    using SalesApp.Model.Model;
+    using Extensions;
+    using Model.Model;
 
     public class OrderLineViewModel : CustomViewModelBase
     {
@@ -17,17 +10,17 @@ namespace SalesApp.ViewModels
 
         public OrderLine OrderLine
         {
-            get { return this.orderLine; }
+            get { return orderLine; }
             set
             {
-                this.orderLine = value;
+                orderLine = value;
                 RaisePropertyChanged();
             }
         }
 
         public OrderLineViewModel(OrderLine orderLine) : this()
         {
-            this.OrderLine = orderLine;
+            OrderLine = orderLine;
         }
 
         public OrderLineViewModel()

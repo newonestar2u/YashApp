@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using SalesApp.ViewModels;
-
-namespace SalesApp.Pages
+﻿namespace SalesApp.Pages
 {
-   
+    using ViewModels;
+
     public partial class CartPage
     {
         public CartPage()
         {
             InitializeComponent();
             //this.BindingContext = this;
-            //this.Count = App.Orders.Count;
+            //this.Count = App.ordersViewModels.Count;
             //this.UpdateChildrenLayout();
         }
 

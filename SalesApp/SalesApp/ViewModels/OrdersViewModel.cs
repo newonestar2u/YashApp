@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SalesApp.Extensions;
-using SalesApp.Model.Model;
-using SalesApp.Service;
-
-namespace SalesApp.ViewModels
+﻿namespace SalesApp.ViewModels
 {
+    using System.Collections.Generic;
+    using Extensions;
+    using Model.Model;
+    using Service;
 
-
-    public class OrdersViewModel : CustomViewModelBase
+    public class OrdersViewModel : CustomViewModelBase<Order>
     {
         private IList<OrderViewModel> orders = new List<OrderViewModel>();
 
@@ -17,12 +13,12 @@ namespace SalesApp.ViewModels
         {
             get
             {
-                return this.orders;
+                return orders;
             }
             set
             {
-                this.orders = value;
-                var list = new ObservableList<OrderViewModel>(this.orders);
+                orders = value;
+                var list = new ObservableList<OrderViewModel>(orders);
                 list.CollectionChanged += RaiseCollectionChanged;
                 RaisePropertyChanged();
             }
@@ -36,12 +32,7 @@ namespace SalesApp.ViewModels
         private async void BindData()
         {
             var orderService = new OrderService();
-            this.Orders = ConvertProductsToViewModels(await orderService.GetAsync());
-        }
-
-        private IList<OrderViewModel> ConvertProductsToViewModels(IList<Order> customers)
-        {
-            return customers.Select(product => new OrderViewModel(product)).ToList();
+            Orders = this.ConverToModelView<OrderViewModel>(await orderService.GetAsync());
         }
     }
 }

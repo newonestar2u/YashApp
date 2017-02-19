@@ -10,11 +10,11 @@
   <ContentView.Resources>
     <ResourceDictionary>
       <Style x:Key="LblHeaderStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="30"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
         <Setter Property="FontAttributes" Value="Bold"></Setter>
       </Style>
       <Style x:Key="LblDescriptionStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontSize" Value="10"></Setter>
         <Setter Property="FontAttributes" Value="Italic"></Setter>
       </Style>
     </ResourceDictionary>
@@ -36,8 +36,9 @@
     </StackLayout>
 
     <StackLayout Grid.Column="1">
-      <Button Text="" Image="water" x:Name="ButtonWater" Clicked="ButtonWater_OnClicked"></Button>
-      <Button Text="" Image="news"  x:Name="ButtonNews" Clicked="ButtonNews_OnClicked"></Button>
+      <Button Text="take Order" x:Name="ButtonTakeOrder" Clicked="ButtonTakeOrder_OnClicked"></Button>
+      <!--<Button Text="" Image="water" x:Name="ButtonWater" Clicked="ButtonWater_OnClicked"></Button>
+      <Button Text="" Image="news"  x:Name="ButtonNews" Clicked="ButtonNews_OnClicked"></Button>-->
       <!--<BoxView HorizontalOptions="Fill"></BoxView>-->
     </StackLayout>
   </Grid>

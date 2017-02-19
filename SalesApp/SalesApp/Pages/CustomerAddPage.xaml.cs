@@ -1,6 +1,5 @@
 ﻿using System;
 using SalesApp.ViewModels;
-using Xamarin.Forms;
 
 namespace SalesApp.Pages
 {
