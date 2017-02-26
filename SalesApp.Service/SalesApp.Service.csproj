@@ -47,6 +47,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppService.cs" />
     <Compile Include="Contracts\IYasService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="OrderLineService.cs" />

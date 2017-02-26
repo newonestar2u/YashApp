@@ -5,9 +5,9 @@
              xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp"
              x:Class="SalesApp.Pages.ProductPage">
   <ContentPage.BindingContext >
-    <vm:ProductsViewModel></vm:ProductsViewModel>
+    <!--<vm:ProductsViewModel></vm:ProductsViewModel>-->
   </ContentPage.BindingContext>
-  <StackLayout>
-    <custom:ProductList ClassId="Products" BindingContext="{Binding Products}"></custom:ProductList>
+  <StackLayout x:Name="ProductsStackLayout">
+    <!--<custom:ProductList ClassId="Products" BindingContext="{Binding Products}"></custom:ProductList>-->
   </StackLayout>
 </ContentPage>

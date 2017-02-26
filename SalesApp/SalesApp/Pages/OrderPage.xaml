@@ -7,7 +7,7 @@
   <ContentPage.BindingContext >
     <vm:OrdersViewModel></vm:OrdersViewModel>
   </ContentPage.BindingContext>
-  <StackLayout>
-    <custom:OrderList ClassId="ordersViewModelsPage" BindingContext="{Binding Orders}"></custom:OrderList>
+  <StackLayout x:Name="OrdersStackLayout">
+    <!--<custom:OrderList ClassId="ordersViewModelsPage" BindingContext="{Binding Orders}"></custom:OrderList>-->
   </StackLayout>
 </ContentPage>

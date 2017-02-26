@@ -20,7 +20,7 @@ namespace SalesApp.Service
         {
 
 #if DEBUG
-            uri = new Uri("http://192.168.1.99/");
+            uri = new Uri("http://192.168.1.11/");
 #else
             uri = new Uri("http://anandaa.azurewebsites.net");
 #endif

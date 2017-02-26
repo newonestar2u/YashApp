@@ -23,23 +23,22 @@
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="7*"></ColumnDefinition>
-      <ColumnDefinition Width="3*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
     <StackLayout  Grid.Column="0">
-      <Label HorizontalOptions="Center" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
-      <Label HorizontalOptions="Center" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-      <Label HorizontalOptions="Center" Text="{Binding Customer.DoorNo}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-      <Label HorizontalOptions="Center" Text="{Binding Customer.Mobile}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
-      <Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>
+      <Label HorizontalOptions="Start" Text="{Binding Customer.FirstName}" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>
+      <Label HorizontalOptions="Start" Text="{Binding Customer.CustomerId}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Start" Text="{Binding Customer.DoorNo}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <Label HorizontalOptions="Start" Text="{Binding Customer.Mobile}" Style="{Binding Source={StaticResource LblDescriptionStyle}}"></Label>
+      <!--<Button Text="Details" Command="{Binding BtnDetailClickCommand}"></Button>-->
       <!--noob fix-->
       <!--<BoxView HorizontalOptions="FillAndExpand"></BoxView>-->
     </StackLayout>
 
-    <StackLayout Grid.Column="1">
-      <Button Text="take Order" x:Name="ButtonTakeOrder" Clicked="ButtonTakeOrder_OnClicked"></Button>
+    <!--<StackLayout Grid.Column="1">-->
+      <!--<Button Text="take Order" x:Name="ButtonTakeOrder" Clicked="ButtonTakeOrder_OnClicked"></Button>-->
       <!--<Button Text="" Image="water" x:Name="ButtonWater" Clicked="ButtonWater_OnClicked"></Button>
       <Button Text="" Image="news"  x:Name="ButtonNews" Clicked="ButtonNews_OnClicked"></Button>-->
       <!--<BoxView HorizontalOptions="Fill"></BoxView>-->
-    </StackLayout>
+    <!--</StackLayout>-->
   </Grid>
 </ContentView>

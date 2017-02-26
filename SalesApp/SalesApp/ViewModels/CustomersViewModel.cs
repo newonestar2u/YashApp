@@ -12,6 +12,8 @@
     {
         private IList<CustomerViewModel> customers;
 
+
+        public List<Customer> ListCustomers;
         public IList<CustomerViewModel> Customers
         {
             get { return this.customers; }
@@ -27,7 +29,7 @@
         public CustomersViewModel()
         {
             this.customers = new List<CustomerViewModel>();
-            BindData();
+          //  BindData();
             BtnAddNewCustomerClickCommand = new RelayCommand(this.BtnAddNewCustomer);
         }
 
@@ -35,6 +37,7 @@
         {
             var productService = new CustomerService();
             var result = await productService.GetAsync();
+            ListCustomers = result;
             Customers = base.ConverToModelView<CustomerViewModel>(result);
         }
 

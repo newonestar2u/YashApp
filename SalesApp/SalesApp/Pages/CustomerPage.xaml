@@ -5,7 +5,7 @@
              xmlns:custom="clr-namespace:SalesApp.CustomViews;assembly=SalesApp"
              x:Class="SalesApp.Pages.CustomerPage">
   <ContentPage.BindingContext >
-    <vm:CustomersViewModel></vm:CustomersViewModel>
+    <vm:CustomersViewModel ></vm:CustomersViewModel>
   </ContentPage.BindingContext>
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -21,13 +21,38 @@
       </Style>-->
     </ResourceDictionary>
   </ContentPage.Resources>
+
+
   <StackLayout Orientation="Vertical">
+
     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Teal">
       <!--<Label Text="Notworking at all" Style="{Binding Source={StaticResource LblHeaderStyle}}"></Label>-->
-      <Button  ClassId="buttonNewCustomer"  Style="{Binding Source={StaticResource BStyle}}"  Text="New" Command="{Binding BtnAddNewCustomerClickCommand} "></Button>
+      <Button  ClassId="buttonNewCustomer"  Style="{Binding Source={StaticResource BStyle}}"  Text="New"
+               Command="{Binding BtnAddNewCustomerClickCommand} "></Button>
     </StackLayout>
-    <StackLayout>
-      <custom:CustomerList ClassId="Customer" BindingContext="{Binding Customers}"></custom:CustomerList>
-    </StackLayout>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="3*"></ColumnDefinition>
+        <ColumnDefinition Width="5*"></ColumnDefinition>
+        <!--<ColumnDefinition Width="5*"></ColumnDefinition>-->
+      </Grid.ColumnDefinitions>
+      <!--<custom:CustomerList Grid.Column="0" ClassId="CustomerList" BindingContext="{Binding CustomersView.Customers}"></custom:CustomerList>-->
+      <!--<custom:ProductList Grid.Column="1" ClassId="ProductList" BindingContext="{Binding ProductsView.Products}"></custom:ProductList>-->
+      <StackLayout Orientation="Horizontal" Grid.Column="0"  x:Name="CustomersStackLayout"/>
+      <StackLayout Orientation="Horizontal" Grid.Column="1"  x:Name="ProductsStackLayout"/>
+      <!--<ListView Grid.Column="1" x:Name="recipeList" ItemsSource="{Binding CustomersView.ListCustomers}" ItemTapped="OnItemSelected">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding FirstName}"/>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>-->
+    </Grid>
+
+    <!--<StackLayout Orientation="Horizontal">
+      <custom:CustomerList ClassId="CustomerList" BindingContext="{Binding CustomersView.Customers}"></custom:CustomerList>
+      <custom:ProductList ClassId="ProductList" BindingContext="{Binding ProductsView.Products}"></custom:ProductList>
+    </StackLayout>-->
   </StackLayout>
 </ContentPage>
