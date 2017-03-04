@@ -16,7 +16,7 @@ namespace SalesApp.Pages
         {
             var header = new Label
             {
-                Text = "Products",
+                Text = "Orders",
                 FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
                 HorizontalOptions = LayoutOptions.Center
             };
@@ -24,52 +24,86 @@ namespace SalesApp.Pages
             var items = new AppService<Order>().Get();
 
             // Create the ListView.
-            var productsListView = new ListView
+            var ordersListView = new ListView
             {
                 // Source of data items.
                 ItemsSource = items,
-                RowHeight = 150,
+                RowHeight = 70,
 
-                // Define template for displaying each item.
-                // (Argument of DataTemplate constructor is called for 
-                //      each item; it must return a Cell derivative.)
                 ItemTemplate = new DataTemplate(() =>
                 {
                     // Create views with bindings for displaying each property.
-                    var customerId = new Label();
-                    customerId.SetBinding(Label.TextProperty, "CustomerId");
-                    var orderDate = new Label();
-                    orderDate.SetBinding(Label.TextProperty, "OrderDate");
+                    var customerId = new Label(); customerId.SetBinding(Label.TextProperty, "CustomerId");
+                    var orderDate = new Label(); orderDate.SetBinding(Label.TextProperty, "OrderDate");
+                    var totalOrders = new Label(); totalOrders.SetBinding<Order>(Label.TextProperty, o => o.OrderLines.Count);
 
-                    var totalOrders = new Label();
-                    totalOrders.SetBinding<Order>(Label.TextProperty, (o) => o.OrderLines.Count);
+                    //var stackLayout = new StackLayout();
 
-                    var stackLayout = new StackLayout();
-                    stackLayout.Children.Add(new Label() { Text = "Order#" });
-                    stackLayout.Children.Add(new Label() { Text = "1000" });
+                    #region Order lines view
+                    var orderLinesView = new ListView
+                    {
+                        //RowHeight = 100,
+                        //ItemsSource = "OrderLines",
+                        ItemTemplate = new DataTemplate(() =>
+                        {
+                            // Create views with bindings for displaying each property.
+                            var product = new Label();
+                            product.SetBinding(Label.TextProperty, "Product");
+                            var amount = new Label();
+                            amount.SetBinding(Label.TextProperty, "Amount");
+                            var quantity = new Label();
+                            quantity.SetBinding(Label.TextProperty, "Quantity");
 
-                    var boxView = new BoxView();
-                    boxView.SetBinding(BoxView.ColorProperty, "FavoriteColor");
+                            var gridDataOrderLines = new Grid()
+                            {
+                                HorizontalOptions = LayoutOptions.FillAndExpand,
+                                ColumnDefinitions = new ColumnDefinitionCollection()
+                                {
+                                    new ColumnDefinition() {Width = new GridLength(1, GridUnitType.Star)},
+                                    new ColumnDefinition() {Width = new GridLength(80)},
+                                    new ColumnDefinition() {Width = new GridLength(80)}
+                                },
+                                RowDefinitions = new RowDefinitionCollection()
+                                {
+                                    new RowDefinition() {Height =  new GridLength(60)},
+                                }
+                            };
+                            gridDataOrderLines.Children.Add(product, 0, 0);
+                            gridDataOrderLines.Children.Add(amount, 1, 0);
+                            gridDataOrderLines.Children.Add(quantity, 2, 0);
+                            // Return an assembled ViewCell.
+                            return new ViewCell()
+                            {
+                                View = gridDataOrderLines
+                            };
+                        })
+                    };
+                    #endregion
+
+                    //stackLayout.Children.Add(orderLinesView);
+                    orderLinesView.SetBinding<Order>(ListView.ItemsSourceProperty, o => o.OrderLines);
+                    //var boxView = new BoxView();
+                    //boxView.SetBinding(BoxView.ColorProperty, "FavoriteColor");
                     var gridData = new Grid()
                     {
                         HorizontalOptions = LayoutOptions.FillAndExpand,
                         ColumnDefinitions = new ColumnDefinitionCollection()
                         {
-                            new ColumnDefinition() {Width = new GridLength(60)},
+                            new ColumnDefinition() {Width = new GridLength(80)},
                             new ColumnDefinition() {Width = new GridLength(260)},
                             new ColumnDefinition() {Width = new GridLength(1, GridUnitType.Star)}
                         },
                         RowDefinitions = new RowDefinitionCollection()
                         {
-                            new RowDefinition() {Height =  new GridLength(1, GridUnitType.Star)},
+                            new RowDefinition() {Height =  new GridLength(1,GridUnitType.Star)},
                             new RowDefinition() {Height =  new GridLength(1, GridUnitType.Star)}
                         }
                     };
                     gridData.Children.Add(customerId, 0, 0);
                     gridData.Children.Add(orderDate, 1, 0);
                     gridData.Children.Add(totalOrders, 2, 0);
-                    gridData.Children.Add(stackLayout, 0, 2);
-                    // Return an assembled ViewCell.
+                    gridData.Children.Add(orderLinesView, 0, 1);
+                    Grid.SetColumnSpan(orderLinesView, 3);
                     return new ViewCell
                     {
                         View = gridData
@@ -88,7 +122,7 @@ namespace SalesApp.Pages
                 Children =
                 {
                     header,
-                    productsListView
+                    ordersListView
                 }
             });
         }
