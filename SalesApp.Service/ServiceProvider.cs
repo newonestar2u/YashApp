@@ -127,12 +127,48 @@ namespace SalesApp.Service
             return default(T);
         }
 
+        public async Task<T> PutTask(T data, int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var t = JsonConvert.SerializeObject(data);
+                var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.PutAsync(this.uri + this.GetUri(data) + $"/{id}", content).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        // by calling .Result you are performing a synchronous call
+                        var responseContent = response.Content;
+
+                        // by calling .Result you are synchronously reading the result
+                        string placesJson = responseContent.ReadAsStringAsync().Result;
+                        var placeobject = new T();
+                        if (placesJson != "")
+                        {
+                            placeobject = JsonConvert.DeserializeObject<T>(placesJson);
+                        }
+                        return placeobject;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
+            }
+            return default(T);
+        }
+
         private string GetUri<T>(T data) where T : BaseModel
         {
             var uri = typeof(T).GetTypeInfo().GetCustomAttribute<UriAttribute>().Uri;
             if (uri.Contains("{"))
             {
-                var property = uri.Substring(uri.IndexOf("{") + 1, uri.IndexOf("}") - uri.IndexOf("{") -1);
+                var property = uri.Substring(uri.IndexOf("{") + 1, uri.IndexOf("}") - uri.IndexOf("{") - 1);
                 var val = data.GetType().GetRuntimeProperty(property).GetValue(data, null);
                 uri = uri.Replace("{" + property + "}", val.ToString());
             }

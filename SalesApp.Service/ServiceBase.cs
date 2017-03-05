@@ -32,6 +32,12 @@
             return access;
         }
 
+        public T Put(T entity)
+        {
+            var access = Provider.PutTask(entity, entity.Id);
+            return access.Result;
+        }
+
         public T Post(T entity)
         {
             var access = Provider.PostTask(entity);

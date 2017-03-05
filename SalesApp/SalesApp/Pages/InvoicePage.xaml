@@ -5,10 +5,11 @@
              xmlns:customViews="clr-namespace:SalesApp.CustomViews;assembly=SalesApp"
              x:Class="SalesApp.Pages.InvoicePage">
 
-  <ContentPage.BindingContext >
-    <viewModels:InvoicesViewModel></viewModels:InvoicesViewModel>
-  </ContentPage.BindingContext>
-  <StackLayout>
+    <ContentPage.BindingContext >
+        <viewModels:InvoicesViewModel></viewModels:InvoicesViewModel>
+    </ContentPage.BindingContext>
+    <!--<StackLayout>
     <customViews:InvoiceList ClassId="InvoicePage" BindingContext="{Binding Invoices}"></customViews:InvoiceList>
-  </StackLayout>
+  </StackLayout>-->
+    <StackLayout Orientation="Horizontal" Grid.Column="0"  x:Name="StackLayoutInvoices"/>
 </ContentPage>

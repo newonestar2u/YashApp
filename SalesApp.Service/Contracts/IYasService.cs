@@ -16,6 +16,7 @@ namespace SalesApp.Service.Contracts
 
         Task<List<T>> GetAsync();
 
+        T Put(T entity);
         T Post(T entity);
     }
 }
